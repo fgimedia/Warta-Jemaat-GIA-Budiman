@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Warta Jemaat GIA Budiman</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+
+</head>
+
+<body>
+
+  <section class="warta-section">
+
+    <h1>Warta Jemaat</h1>
+
+    <div class="slideshow-container">
+
+      <img
+        id="mainSlide"
+        class="main-slide"
+        src=""
+        alt="Warta Jemaat"
+        onclick="openFullscreen()"
+      />
+
+      <button
+        class="nav prev"
+        onclick="changeSlide(-1)"
+      >
+        ❮
+      </button>
+
+      <button
+        class="nav next"
+        onclick="changeSlide(1)"
+      >
+        ❯
+      </button>
+
+    </div>
+
+    <!-- THUMBNAILS -->
+    <div
+      class="thumbnail-container"
+      id="thumbnailContainer"
+    ></div>
+
+    <!-- PDF DOWNLOAD -->
+    <div class="pdf-download-wrapper">
+
+      <a
+        href="warta/warta.pdf"
+        download
+        class="pdf-download-btn"
+      >
+        ⬇ Download PDF Warta Jemaat
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- FULLSCREEN -->
+  <div
+    id="fullscreenModal"
+    class="fullscreen-modal"
+  >
+
+    <span
+      class="close-btn"
+      onclick="closeFullscreen()"
+    >
+      &times;
+    </span>
+
+    <button
+      class="fullscreen-prev"
+      onclick="changeSlide(-1)"
+    >
+      ❮
+    </button>
+
+    <img id="fullscreenImage" />
+
+    <button
+      class="fullscreen-next"
+      onclick="changeSlide(1)"
+    >
+      ❯
+    </button>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
