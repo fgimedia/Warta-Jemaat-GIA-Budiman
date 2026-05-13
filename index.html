@@ -1,335 +1,109 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Warta Jemaat GIA Budiman</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+
+</head>
+
+<body>
+
+  <section class="warta-section">
+
+    <h1>Warta Jemaat GIA Budiman</h1>
+    <h2>Kamis, 14 Mei 2026</h2>
+
+    <div class="slideshow-container">
+
+      <img
+        id="mainSlide"
+        class="main-slide"
+        src=""
+        alt="Warta Jemaat"
+        onclick="openFullscreen()"
+      />
+
+      <button
+        class="nav prev"
+        onclick="changeSlide(-1)"
+      >
+        ❮
+      </button>
+
+      <button
+        class="nav next"
+        onclick="changeSlide(1)"
+      >
+        ❯
+      </button>
+
+    </div>
+
+    <!-- THUMBNAILS -->
+    <div
+      class="thumbnail-container"
+      id="thumbnailContainer"
+    ></div>
+
+    <!-- PDF DOWNLOAD -->
+    <div class="pdf-download-wrapper">
+
+      <a
+        href="warta/Warta Jemaat, 14 Mei 2026.pdf"
+        download
+        class="pdf-download-btn"
+      >
+        ⬇ Download PDF Warta Jemaat
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- FULLSCREEN -->
+  <div
+    id="fullscreenModal"
+    class="fullscreen-modal"
+  >
+
+    <span
+      class="close-btn"
+      onclick="closeFullscreen()"
+    >
+      &times;
+    </span>
+
+    <button
+      class="fullscreen-prev"
+      onclick="changeSlide(-1)"
+    >
+      ❮
+    </button>
+
+    <img id="fullscreenImage" />
+
+    <button
+      class="fullscreen-next"
+      onclick="changeSlide(1)"
+    >
+      ❯
+    </button>
 
-body{
-  background:#f5f5f5;
-  font-family:Arial, Helvetica, sans-serif;
-}
+  </div>
 
-.warta-section{
-  width:100%;
-  padding:20px 10px 30px;
-}
+  <script src="script.js"></script>
 
-.warta-section h1{
-  text-align:center;
-  margin-bottom:10px;
-  color:#1e3a5f;
-  font-size:50px;
-}
-
-.warta-section h2{
-  text-align:center;
-  margin-bottom:20px;
-  color:#F47A1A;
-  font-size:32px;
-}
-
-/* =========================
-   SLIDESHOW
-========================= */
-
-.slideshow-container{
-  position:relative;
-
-  width:100%;
-  max-width:1400px;
-
-  margin:auto;
-}
-
-.main-slide{
-  width:100%;
-
-  display:block;
-
-  border-radius:14px;
-
-  cursor:pointer;
-
-  box-shadow:0 5px 20px rgba(0,0,0,0.2);
-
-  user-select:none;
-  -webkit-user-drag:none;
-}
-
-/* =========================
-   PDF DOWNLOAD
-========================= */
-
-.pdf-download-wrapper{
-  display:flex;
-  justify-content:center;
-
-  margin-top:20px;
-}
-
-.pdf-download-btn{
-  display:flex;
-  align-items:center;
-  gap:10px;
-
-  padding:14px 22px;
-
-  border-radius:12px;
-
-  background:#1e3a5f;
-  color:white;
-
-  text-decoration:none;
-
-  font-weight:bold;
-
-  transition:0.3s;
-
-  box-shadow:0 4px 12px rgba(0,0,0,0.15);
-}
-
-.pdf-download-btn:hover{
-  transform:translateY(-2px);
-  background:#294d7a;
-}
-
-/* =========================
-   NAVIGATION
-========================= */
-
-.nav{
-  position:absolute;
-
-  top:50%;
-  transform:translateY(-50%);
-
-  width:55px;
-  height:55px;
-
-  border:none;
-  border-radius:50%;
-
-  background:rgba(0,0,0,0.35);
-  color:white;
-
-  font-size:28px;
-
-  cursor:pointer;
-
-  transition:0.3s;
-}
-
-.nav:hover{
-  background:rgba(0,0,0,0.55);
-}
-
-.prev{
-  left:15px;
-}
-
-.next{
-  right:15px;
-}
-
-/* =========================
-   THUMBNAILS
-========================= */
-
-.thumbnail-container{
-  display:flex;
-  gap:10px;
-
-  overflow-x:auto;
-
-  margin-top:20px;
-  padding:5px;
-
-  scroll-behavior:smooth;
-}
-
-.thumbnail-container::-webkit-scrollbar{
-  display:none;
-}
-
-/* ITEM */
-
-.thumbnail-item{
-  position:relative;
-
-  flex-shrink:0;
-}
-
-/* IMAGE */
-
-.thumbnail-item img{
-  width:120px;
-  height:75px;
-
-  object-fit:cover;
-
-  border-radius:10px;
-
-  cursor:pointer;
-
-  opacity:0.6;
-
-  border:3px solid transparent;
-
-  transition:0.3s;
-
-  display:block;
-}
-
-.thumbnail-item img:hover{
-  opacity:1;
-}
-
-.thumbnail-item img.active-thumb{
-  opacity:1;
-  border-color:#1e3a5f;
-}
-
-/* DOWNLOAD BUTTON */
-
-.thumb-download{
-  position:absolute;
-
-  left:6px;
-  right:6px;
-  bottom:6px;
-
-  height:30px;
-
-  border:none;
-  border-radius:8px;
-
-  background:rgba(0,0,0,0.75);
-  color:white;
-
-  text-decoration:none;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  gap:6px;
-
-  font-size:13px;
-  font-weight:bold;
-
-  transition:0.3s;
-
-  backdrop-filter:blur(4px);
-}
-
-.thumb-download:hover{
-  background:#1e3a5f;
-}
-
-/* =========================
-   FULLSCREEN
-========================= */
-
-.fullscreen-modal{
-  display:none;
-
-  position:fixed;
-  inset:0;
-
-  z-index:9999;
-
-  justify-content:center;
-  align-items:center;
-
-  background:rgba(0,0,0,0.95);
-}
-
-.fullscreen-modal img{
-  max-width:90%;
-  max-height:90%;
-
-  object-fit:contain;
-}
-
-.close-btn{
-  position:absolute;
-
-  top:15px;
-  right:25px;
-
-  color:white;
-
-  font-size:50px;
-
-  cursor:pointer;
-}
-
-.fullscreen-prev,
-.fullscreen-next{
-  position:absolute;
-
-  top:50%;
-  transform:translateY(-50%);
-
-  width:55px;
-  height:55px;
-
-  border:none;
-  border-radius:50%;
-
-  background:rgba(255,255,255,0.2);
-  color:white;
-
-  font-size:28px;
-
-  cursor:pointer;
-}
-
-.fullscreen-prev{
-  left:20px;
-}
-
-.fullscreen-next{
-  right:20px;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:768px){
-
-  .warta-section{
-    padding:10px 0 20px;
-  }
-
-  .warta-section h1{
-    font-size:24px;
-  }
-
-  .main-slide{
-    border-radius:0;
-  }
-
-  .thumbnail-item img{
-    width:95px;
-    height:60px;
-  }
-
-  .nav,
-  .fullscreen-prev,
-  .fullscreen-next{
-    width:42px;
-    height:42px;
-    font-size:22px;
-  }
-
-  .pdf-download-btn{
-    width:calc(100% - 20px);
-
-    justify-content:center;
-
-    font-size:14px;
-  }
-
-}
+</body>
+</html>
